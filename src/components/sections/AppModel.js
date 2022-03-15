@@ -6,6 +6,8 @@ import classNames from "classnames";
 
 const AppModel = ({ topDivider, bottomDivider }) => {
   const [model, setModel] = useState("linear");
+  const [c_value, setC_value] = useState(0);
+  const [degree, setDegree] = useState(1);
   const innerClasses = classNames(
     "features-split-inner section-inner",
     topDivider && "has-top-divider",
@@ -117,33 +119,102 @@ const AppModel = ({ topDivider, bottomDivider }) => {
             // justifyContent: "center",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              width: "100%",
-              justifyContent: "center",
-            }}
-          >
-            <text>C</text>
-            <input
-              type={"range"}
-              min={1}
-              max={100}
-              style={{ width: "70%", marginTop: "15px" }}
-            />
-          </div>
-          {/* <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <input type={"radio"} />
-            <text>type</text>
-          </div> */}
+          {model === "linear" && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: "100%",
+                justifyContent: "center",
+              }}
+            >
+              <text>C - {c_value}</text>
+              <input
+                type={"range"}
+                min={1}
+                max={100}
+                style={{ width: "70%", marginTop: "15px" }}
+                value={c_value}
+                onChange={(e) => setC_value(e.target.value)}
+              />
+            </div>
+          )}
+          {model === "poly" && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: "100%",
+                justifyContent: "center",
+              }}
+            >
+              <text>C - {c_value}</text>
+              <input
+                type={"range"}
+                min={1}
+                max={100}
+                step={0.1}
+                style={{ width: "80%", marginTop: "15px" }}
+                value={c_value}
+                onChange={(e) => setC_value(e.target.value)}
+              />
+              <br />
+              <text>Degree - {degree}</text>
+              <input
+                type={"range"}
+                min={1}
+                max={20}
+                step={1}
+                style={{ width: "65%", marginTop: "15px" }}
+                value={degree}
+                onChange={(e) => setDegree(e.target.value)}
+              />
+            </div>
+          )}
+          {model === "rbf" && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: "100%",
+                justifyContent: "center",
+              }}
+            >
+              <text>C - {c_value}</text>
+              <input
+                type={"range"}
+                min={1}
+                max={100}
+                style={{ width: "70%", marginTop: "15px" }}
+                value={c_value}
+                onChange={(e) => setC_value(e.target.value)}
+              />
+            </div>
+          )}
+          {model === "sigmoid" && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                width: "100%",
+                justifyContent: "center",
+              }}
+            >
+              <text>C - {c_value}</text>
+              <input
+                type={"range"}
+                min={1}
+                max={100}
+                style={{ width: "70%", marginTop: "15px" }}
+                value={c_value}
+                onChange={(e) => setC_value(e.target.value)}
+              />
+            </div>
+          )}
         </div>
       </div>
       {/* <SectionHeader data={sectionHeader} /> */}
