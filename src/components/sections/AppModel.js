@@ -6,6 +6,7 @@ import classNames from "classnames";
 
 const AppModel = ({ topDivider, bottomDivider }) => {
   const [model, setModel] = useState("linear");
+  const [test_size, setTest_size] = useState(0);
   const [c_value, setC_value] = useState(0);
   const [degree, setDegree] = useState(1);
   const innerClasses = classNames(
@@ -28,6 +29,38 @@ const AppModel = ({ topDivider, bottomDivider }) => {
       borderRadius: "10px",
       marginBottom: "10px",
     },
+  };
+
+  const runModel = () => {
+    let uri = "https://avinashapi.herokuapp.com/train-svm";
+    let payload = {
+      kernel: model,
+      test_size: test_size,
+      c: c_value,
+      gamma: "scale",
+      degree,
+    };
+    console.log("started");
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json");
+    headers.append("Origin", "https://avinashapi.herokuapp.com");
+    fetch(uri, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      //Then with the data from the response in JSON...
+      .then((data) => {
+        console.log("done");
+        console.log("Success:", data);
+      })
+      //Then with the error genereted...
+      .catch((error) => {
+        console.log("failed");
+        console.error("Error:", error);
+      });
   };
 
   //   const sectionHeader = {
@@ -119,6 +152,17 @@ const AppModel = ({ topDivider, bottomDivider }) => {
             // justifyContent: "center",
           }}
         >
+          <text>Test size- {test_size}</text>
+          <input
+            type={"range"}
+            min={0.1}
+            max={0.8}
+            step={0.05}
+            style={{ width: "70%", marginTop: "15px" }}
+            value={test_size}
+            onChange={(e) => setTest_size(e.target.value)}
+          />
+
           {model === "linear" && (
             <div
               style={{
@@ -138,6 +182,20 @@ const AppModel = ({ topDivider, bottomDivider }) => {
                 value={c_value}
                 onChange={(e) => setC_value(e.target.value)}
               />
+
+              {/* <input type={"button"} title={"Execute"} width={50} />
+              <button
+                onClick={() => runModel()}
+                title={"EXECUTE"}
+                style={{
+                  marginTop: 10,
+                  width: "50%",
+                  height: 40,
+                  background: "#634640",
+                  color: "#fff",
+                }}
+                color={"#634640"}
+              /> */}
             </div>
           )}
           {model === "poly" && (
@@ -215,6 +273,21 @@ const AppModel = ({ topDivider, bottomDivider }) => {
               />
             </div>
           )}
+          <div
+            onClick={() => runModel()}
+            style={{
+              height: 50,
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: 10,
+              padding: 10,
+              boxShadow: "inherit",
+              // width: "50%",
+              background: "#634640",
+            }}
+          >
+            <text style={{ color: "#fff" }}>Execute</text>
+          </div>
         </div>
       </div>
       {/* <SectionHeader data={sectionHeader} /> */}
