@@ -3,12 +3,16 @@ import React, { useState } from "react";
 import GenericSection from "./GenericSection";
 // import SectionHeader from "./partials/SectionHeader";
 import classNames from "classnames";
+import Button from "../elements/Button";
 
 const AppModel = ({ topDivider, bottomDivider }) => {
   const [model, setModel] = useState("linear");
   const [test_size, setTest_size] = useState(0);
   const [c_value, setC_value] = useState(0);
   const [degree, setDegree] = useState(1);
+  const [result, setResult] = useState("-");
+  const [train_time, setTrain_time] = useState("-");
+  const [loading, setLoading] = useState(false);
   const innerClasses = classNames(
     "features-split-inner section-inner",
     topDivider && "has-top-divider",
@@ -40,6 +44,7 @@ const AppModel = ({ topDivider, bottomDivider }) => {
       gamma: "scale",
       degree,
     };
+    setLoading(true);
     console.log("started");
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -55,11 +60,16 @@ const AppModel = ({ topDivider, bottomDivider }) => {
       .then((data) => {
         console.log("done");
         console.log("Success:", data);
+        setTrain_time(data.time);
+        setResult(data.score);
+        setLoading(false);
       })
       //Then with the error genereted...
       .catch((error) => {
+        setLoading(false);
         console.log("failed");
         console.error("Error:", error);
+        alert(error.message);
       });
   };
 
@@ -273,7 +283,16 @@ const AppModel = ({ topDivider, bottomDivider }) => {
               />
             </div>
           )}
-          <div
+          <Button
+            loading={loading}
+            tag="a"
+            color="primary"
+            wideMobile
+            onClick={() => runModel()}
+          >
+            Execute
+          </Button>
+          {/* <div
             onClick={() => runModel()}
             style={{
               height: 50,
@@ -287,7 +306,16 @@ const AppModel = ({ topDivider, bottomDivider }) => {
             }}
           >
             <text style={{ color: "#fff" }}>Execute</text>
-          </div>
+          </div> */}
+        </div>
+      </div>
+      <div>
+        <h3>Result</h3>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <text>
+            The Accuracy score for the model trained above is {result}
+          </text>
+          <text>The time used in training the model above is {train_time}</text>
         </div>
       </div>
       {/* <SectionHeader data={sectionHeader} /> */}
