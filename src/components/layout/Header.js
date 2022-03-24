@@ -114,6 +114,7 @@ const Header = ({
                     <li>
                       <a
                         href="https://scikit-learn.org/stable/modules/svm.html"
+                        // href="demo/demosvm.html"
                         // onClick={closeMenu}
                       >
                         Documentation
