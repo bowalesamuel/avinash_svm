@@ -33,11 +33,13 @@ export default function AppGraph({ topDivider, bottomDivider }) {
         <iframe
           title="user Feedback"
           src="https://docs.google.com/forms/d/e/1FAIpQLSfISeWoJZ4u-hV_ZphvUGMuzM-fSeNN8yU-M82C4EOllBnD7A/viewform?embedded=true"
-          width="640"
-          height="709"
           frameborder="0"
           marginheight="0"
           marginwidth="0"
+          style={{
+            width: "80%",
+            height: "1000px",
+          }}
         >
           Loading…
         </iframe>

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 import { SectionProps } from "../../utils/SectionProps";
 // import ButtonGroup from "../elements/ButtonGroup";
 // import Button from "../elements/Button";
 import Image from "../elements/Image";
-import Modal from "../elements/Modal";
+// import Modal from "../elements/Modal";
 
 const propTypes = {
   ...SectionProps.types,
@@ -24,17 +24,17 @@ const Hero = ({
   invertColor,
   ...props
 }) => {
-  const [videoModalActive, setVideomodalactive] = useState(false);
+  // const [videoModalActive, setVideomodalactive] = useState(false);
 
-  const openModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(true);
-  };
+  // const openModal = (e) => {
+  //   e.preventDefault();
+  //   setVideomodalactive(true);
+  // };
 
-  const closeModal = (e) => {
-    e.preventDefault();
-    setVideomodalactive(false);
-  };
+  // const closeModal = (e) => {
+  //   e.preventDefault();
+  //   setVideomodalactive(false);
+  // };
 
   const outerClasses = classNames(
     "hero section center-content",
@@ -76,8 +76,9 @@ const Hero = ({
                 The idea of SVM is simple: The algorithm creates a line or a
                 hyperplane which separates the data into classes.
               </p>
-              <div className="reveal-from-bottom" data-reveal-delay="600">
-                {/* <ButtonGroup>
+
+              {/* <div className="reveal-from-bottom" data-reveal-delay="600">
+                <ButtonGroup>
                   <Button
                     tag="a"
                     color="primary"
@@ -94,8 +95,8 @@ const Hero = ({
                   >
                     View on Github
                   </Button>
-                </ButtonGroup> */}
-              </div>
+                </ButtonGroup>
+              </div> */}
             </div>
           </div>
           <div
@@ -103,29 +104,22 @@ const Hero = ({
             data-reveal-value="20px"
             data-reveal-delay="800"
           >
-            <a
-              data-video="https://player.vimeo.com/video/174002812"
-              href="#0"
-              aria-controls="video-modal"
-              onClick={openModal}
-            >
-              <Image
-                className="has-shadow"
-                src={require("./../../assets/images/svm-hyperplane.png")}
-                alt="Hero"
-                width={796}
-                height={404}
-              />
-            </a>
+            <Image
+              className="has-shadow"
+              src={require("./../../assets/images/svm-hyperplane.png")}
+              alt="Hero"
+              width={796}
+              height={404}
+            />
           </div>
-          <Modal
-            id="video-modal"
-            show={videoModalActive}
-            handleClose={closeModal}
-            video="https://player.vimeo.com/video/174002812"
-            videoTag="iframe"
-          />
         </div>
+        <p>
+          SVM chooses the extreme points/vectors that help in creating the
+          hyperplane. These extreme cases are called as support vectors, and
+          hence algorithm is termed as Support Vector Machine. Consider the
+          below diagram in which there are two different categories that are
+          classified using a decision boundary or hyperplane
+        </p>
       </div>
     </section>
   );
@@ -135,3 +129,5 @@ Hero.propTypes = propTypes;
 Hero.defaultProps = defaultProps;
 
 export default Hero;
+
+// https://www.javatpoint.com/machine-learning-support-vector-machine-algorithm

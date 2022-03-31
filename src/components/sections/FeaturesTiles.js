@@ -43,9 +43,8 @@ const FeaturesTiles = ({
   );
 
   const sectionHeader = {
-    title: "Build up the whole picture",
-    paragraph:
-      "SVM chooses the extreme points/vectors that help in creating the hyperplane. These extreme cases are called as support vectors, and hence algorithm is termed as Support Vector Machine.",
+    title: "",
+    paragraph: "The two main models based on svm are",
   };
 
   return (
