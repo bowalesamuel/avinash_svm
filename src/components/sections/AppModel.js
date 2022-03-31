@@ -84,6 +84,44 @@ const AppModel = ({ topDivider, bottomDivider }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div className={innerClasses}>
+          <h2>SVM Kernels</h2>
+        </div>
+        <p>
+          <b>Linear Kernel </b>
+          is the most basic sort of kernel, and it's usually one-dimensional.
+          When there are a lot of features, it proves to be the best function.
+          For text-classification tasks, the linear kernel is usually preferred
+          because most of these problems can be linearly seperated. Other
+          functions are slower than linear kernel functions.
+        </p>
+        <p>
+          <b>Polynomial Kernel </b>
+          is a more generalized linear kernel representation. It is less
+          efficient and accurate than other kernel functions, hence it is not as
+          popular.
+        </p>
+        <p>
+          <b>Gaussian Radial Basis Function (RBF) </b>
+          in svm is one of the most popular and often utilized kernel functions.
+          It's typically used with non-linear data. When there is no prior
+          knowledge of data, it aids in appropriate separation.
+        </p>
+        <p>
+          <b>Sigmoid Kernel </b>
+          is mostly used in neural networks. This kernel function is comparable
+          to the activation function for neurons in a two-layer perceptron model
+          of a neural network.
+        </p>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <div className={innerClasses}>
